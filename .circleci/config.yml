@@ -20,10 +20,20 @@ defaults: &defaults
     TERM: dumb
 version: 2
 jobs:
-  build:
+  checkout:
     <<: *defaults
     steps:
       - checkout
+      - persist_to_workspace:
+                root: .
+                paths:
+                  - .
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: ~/repo
 
       # Download and cache dependencies
       - restore_cache:
@@ -40,7 +50,7 @@ jobs:
           key: v1-dependencies-{{ checksum "build.gradle" }}
 
       # run tests!
-      - run: gradle test
+      - run: gradle test -x integrationTest
       - persist_to_workspace:
           root: .
           paths:
@@ -52,20 +62,6 @@ jobs:
             # Must be absolute path or relative path from working_directory
             at: ~/repo
 
-        # Download and cache dependencies
-        - restore_cache:
-            keys:
-            - v1-dependencies-{{ checksum "build.gradle" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
-        - run: gradle dependencies
-
-        - save_cache:
-            paths:
-              - ~/.gradle
-            key: v1-dependencies-{{ checksum "build.gradle" }}
-
         # run tests!
         - run: gradle integrationTest
 
@@ -73,7 +69,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - checkout
+      - build:
+          requires:
+            - checkout
       - integration-test:
           requires:
             - build
