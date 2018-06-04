@@ -40,24 +40,6 @@ jobs:
 
       # run tests!
       - run: gradle test
-  integration-test:
-      docker:
-        # specify the version you desire here
-        - image: circleci/openjdk:8-jdk
-
-        # Specify service dependencies here if necessary
-        # CircleCI maintains a library of pre-built images
-        # documented at https://circleci.com/docs/2.0/circleci-images/
-        # - image: circleci/postgres:9.4
-
-      working_directory: ~/repo
-
-      environment:
-        # Customize the JVM maximum heap limit
-        JVM_OPTS: -Xmx3200m
-        TERM: dumb
-    steps:
-      - run: gradle integrationTest
 
 
 workflows:
@@ -65,6 +47,3 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - integration-test:
-          requires:
-                - build
