@@ -42,8 +42,4 @@ workflows:
 
             # run build!
             - run: gradle build -x integrationTest
-      - integration-test:
-          requires:
-            - build
-          steps:
-            - run: gradle integrationTest
+
