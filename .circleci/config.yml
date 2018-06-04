@@ -41,10 +41,16 @@ jobs:
 
       # run tests!
       - run: gradle test
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
   integration-test:
       <<: *defaults
       steps:
-        - checkout
+        - attach_workspace:
+            # Must be absolute path or relative path from working_directory
+            at: ~/repo
 
         # Download and cache dependencies
         - restore_cache:
