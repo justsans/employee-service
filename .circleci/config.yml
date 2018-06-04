@@ -50,6 +50,6 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - integration-test
+      - integration-test:
           requires:
                 - build
