@@ -25,8 +25,8 @@ public class InMemoryEmployeeDaoTest {
 
     @Mock
     private EmployeeDatabase mockEmployeeDatabase;
-    private static final Employee JOHN = new Employee("1aa", "John", "234234234");
-    private static final Employee MICHAEL = new Employee("2bb", "Michael", "234234234");
+    private static final Employee JOHN = new Employee("1aa", "John", "234234234", "", "");
+    private static final Employee MICHAEL = new Employee("2bb", "Michael", "234234234","","");
     ;
 
     @Before

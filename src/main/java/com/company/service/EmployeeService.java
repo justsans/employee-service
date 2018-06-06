@@ -26,5 +26,9 @@ public class EmployeeService {
         employeeDao.addEmployee(employee);
         log.info("Added employee" + employee);
     }
+    public void deleteEmployee(String id) {
+        employeeDao.deleteEmployeeById(id);
+        log.info("Deleted employee with id" + id);
+    }
 }
 

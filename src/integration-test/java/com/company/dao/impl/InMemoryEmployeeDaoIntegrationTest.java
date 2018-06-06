@@ -29,7 +29,7 @@ public class InMemoryEmployeeDaoIntegrationTest {
 
     @Test
     public void shouldAddEmployee() {
-        inMemoryEmployeeDao.addEmployee(new Employee("1", "John", "222-222-2222"));
+        inMemoryEmployeeDao.addEmployee(new Employee("1", "John", "222-222-2222", "", ""));
 
         List<Employee> result = inMemoryEmployeeDao.getAllEmployees();
         assertThat(result.size(), is(1));
@@ -37,7 +37,7 @@ public class InMemoryEmployeeDaoIntegrationTest {
 
     @Test
     public void shouldFindEmployeeById() {
-        Employee john = new Employee("1", "John", "222-222-2222");
+        Employee john = new Employee("1", "John", "222-222-2222", "", "");
         database.addEmployee(john);
 
         Employee employee = inMemoryEmployeeDao.findEmployeeById("1").get();
@@ -47,8 +47,8 @@ public class InMemoryEmployeeDaoIntegrationTest {
 
     @Test
     public void shouldReturnAllEmployees() {
-        database.addEmployee(new Employee("1", "John", "222-222-2222"));
-        database.addEmployee(new Employee("2", "Michael", "222-222-2222"));
+        database.addEmployee(new Employee("1", "John", "222-222-2222", "", ""));
+        database.addEmployee(new Employee("2", "Michael", "222-222-2222", "", ""));
 
         List<Employee> result = inMemoryEmployeeDao.getAllEmployees();
 
@@ -57,8 +57,8 @@ public class InMemoryEmployeeDaoIntegrationTest {
 
     @Test
     public void shouldDeleteEmployee() {
-        database.addEmployee(new Employee("1", "John", "222-222-2222"));
-        database.addEmployee(new Employee("2", "Michael", "222-222-2222"));
+        database.addEmployee(new Employee("1", "John", "222-222-2222", "", ""));
+        database.addEmployee(new Employee("2", "Michael", "222-222-2222", "", ""));
 
         inMemoryEmployeeDao.deleteEmployeeById("1");
 

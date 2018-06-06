@@ -11,4 +11,6 @@ public class Employee {
     private String id;
     private String name;
     private String telephone;
+    private String userName;
+    private String title;
 }

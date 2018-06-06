@@ -41,8 +41,8 @@ public class EmployeeDatabase {
     }
 
     private void setupSampleData() {
-        this.database.put("e1111", new Employee("e1111", "John Adams", "2145678890"));
-        this.database.put("e2222", new Employee("e2222", "Michael Johnson", "2145679990"));
-        this.database.put("e3333", new Employee("e3333", "Amanda Johnson", "2145679990"));
+        this.database.put("e1111", new Employee("e1111", "John Adams", "2145678890", "", "CEO"));
+        this.database.put("e2222", new Employee("e2222", "Michael Johnson", "2145679990", "" ,"Business Analyst"));
+        this.database.put("e3333", new Employee("e3333", "Amanda Johnson", "2145679990", "", "Software Developer"));
     }
 }
