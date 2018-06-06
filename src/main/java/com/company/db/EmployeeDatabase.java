@@ -17,6 +17,7 @@ public class EmployeeDatabase {
     @Autowired
     public EmployeeDatabase() {
         database = new HashMap<>();
+        setupSampleData();
     }
 
     public void addEmployee(Employee employee) {

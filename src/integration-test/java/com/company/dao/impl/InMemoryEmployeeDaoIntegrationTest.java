@@ -52,7 +52,7 @@ public class InMemoryEmployeeDaoIntegrationTest {
 
         List<Employee> result = inMemoryEmployeeDao.getAllEmployees();
 
-        assertThat(result.size(), is(2));
+        assertThat(result.size(), is(5));
     }
 
     @Test
