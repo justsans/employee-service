@@ -53,7 +53,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    public void userJourney() throws Exception {
+    public void userJourneySuccess() throws Exception {
         //add users
         addEmployee("Id11", "My Name");
         addEmployee("Id12", "My Name");
@@ -74,6 +74,20 @@ public class EmployeeControllerTest {
                 .andExpect(content().string(not(containsString("Id11"))));
 
     }
+
+    @Test
+    public void shouldGiveBadRequestWhenInputValidationFails() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/employee/add")
+                .param("id", "id1")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+        mockMvc.perform(MockMvcRequestBuilders.post("/employee/add")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isBadRequest());
+    }
+
 
     private ResultActions addEmployee(String id, String name) throws Exception {
         return mockMvc.perform(MockMvcRequestBuilders.post("/employee/add")
